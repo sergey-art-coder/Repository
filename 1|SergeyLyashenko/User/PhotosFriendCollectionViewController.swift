@@ -13,7 +13,9 @@ class PhotosFriendCollectionViewController: UICollectionViewController, UICollec
     let toFriendPhoto = "toFriendPhoto"
     
     var photos: Friend!
-    var selectedPhotos = [UIImage]()
+    var selectedPhotos = 0
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +38,7 @@ class PhotosFriendCollectionViewController: UICollectionViewController, UICollec
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photosFriendsCell, for: indexPath) as? PhotosFriendCollectionViewCell else { return UICollectionViewCell() }
-        
-        
+
         let photo = photos.userPhotos[indexPath.item]
         cell.photosFriendImage.image = photo
         
@@ -55,7 +56,7 @@ class PhotosFriendCollectionViewController: UICollectionViewController, UICollec
     
     // сохраняем выбранный индекс в переменной selectedPhotos и убираем выделения
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedPhotos = [photos.userPhotos[indexPath.item]]
+        selectedPhotos = indexPath.item
         performSegue(withIdentifier: toFriendPhoto, sender: self)
     }
     
@@ -69,8 +70,9 @@ class PhotosFriendCollectionViewController: UICollectionViewController, UICollec
             
             guard let detailVC = segue.destination as? FriendPhotoViewController,
                   let indexPath = self.collectionView.indexPathsForSelectedItems?.first else { return }
-            selectedPhotos = [photos.userPhotos[indexPath.item]]
-            detailVC.photos = selectedPhotos
+            selectedPhotos = indexPath.item
+            detailVC.photos = photos
+            
             
         }
     }
