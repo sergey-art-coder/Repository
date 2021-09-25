@@ -90,14 +90,19 @@ import UIKit
     // анимация счетчиков (лайков, комментариев и тд)
     private func countLabelAnimations() {
         let animatin = CASpringAnimation(keyPath: "transform.scale")
+        //  начальное значение
         animatin.fromValue = 1
-        // размер анимации
+        // конечное значение
         animatin.toValue = 2
-        animatin.duration = 2
+        // длительность анимации
+        animatin.duration = 1
+        // можем запланировать на любое время анимацию (CACurrentMediaTime() - текущее время)
         animatin.beginTime = CACurrentMediaTime()
         animatin.fillMode = .backwards
+        // жесткость пружины
         animatin.stiffness = 200
         animatin.damping = 0.9
+        // масса
         animatin.mass = 0.5
         countLabel.layer.add(animatin, forKey: nil)
     }

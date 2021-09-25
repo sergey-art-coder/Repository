@@ -228,7 +228,6 @@ class FriendsTableViewController: UITableViewController {
         }
     }
 }
-
 extension UITableViewController: UISearchBarDelegate {
     
 }
