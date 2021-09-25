@@ -98,23 +98,23 @@ class ImageWithShadow: UIView {
     
     override func touchesEnded (_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-
-
+        
+        
         UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction]) {
             self.transform = .identity
         } completion: { completed in
         }
-
+        
     }
-
+    
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-
-
+        
+        
         UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction]) {
             self.transform = .identity
         } completion: { completed in
-
+            
         }
     }
 }

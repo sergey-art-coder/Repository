@@ -10,9 +10,9 @@ import UIKit
 @IBDesignable class LikeButton: UIControl {
     @IBInspectable var likesCount: Int = 0 {
         didSet {
-      //  var likesCount: Int = 0
+            //  var likesCount: Int = 0
             updateSelectionState()
-    }
+        }
     }
     // картинка для лайка
     @IBInspectable var likeImage: UIImage? = nil {
@@ -84,5 +84,21 @@ import UIKit
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         isSelected = !isSelected
         updateSelectionState()
+        countLabelAnimations()
+    }
+    
+    // анимация счетчиков (лайков, комментариев и тд)
+    private func countLabelAnimations() {
+        let animatin = CASpringAnimation(keyPath: "transform.scale")
+        animatin.fromValue = 1
+        // размер анимации
+        animatin.toValue = 2
+        animatin.duration = 2
+        animatin.beginTime = CACurrentMediaTime()
+        animatin.fillMode = .backwards
+        animatin.stiffness = 200
+        animatin.damping = 0.9
+        animatin.mass = 0.5
+        countLabel.layer.add(animatin, forKey: nil)
     }
 }

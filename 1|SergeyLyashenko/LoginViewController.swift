@@ -9,7 +9,6 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -27,6 +26,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.authAction()
         }
+    }
+    
+    func checkLogAndPass() -> Bool {
+        // Получаем текст логина
+        return loginField.text == login && passwordField.text == password
     }
     
     // функция которая проверяет если логин правильный то выполняет переход
@@ -112,25 +116,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordField.text = ""
     }
     
-    func checkLogAndPass() -> Bool {
-        // Получаем текст логина
-        return loginField.text == login && passwordField.text == password
-    }
-    
+    // создаем индикатор загрузки состоящий из трех точек меняющих прозрачность по очереди
     private func pointPrepare(cView: UIView, delay: Double) {
         cView.backgroundColor = .black
-        cView.layer.contents = 2
-        cView.layer.masksToBounds = true
-        cView.alpha = 1
         view.addSubview(cView)
+        // анимация индикатора загрузки
         UIView.animate(withDuration: 0.5, delay: delay, options: [.repeat, .autoreverse]) {
             cView.alpha = 0
-            
         }
     }
-    let point1 = UIView(frame: CGRect(x: 200, y: 550, width: 4, height: 4))
-    let point2 = UIView(frame: CGRect(x: 205, y: 550, width: 4, height: 4))
-    let point3 = UIView(frame: CGRect(x: 210, y: 550, width: 4, height: 4))
+    
+    let point1 = UIView(frame: CGRect(x: 200, y: 500, width: 4, height: 4))
+    let point2 = UIView(frame: CGRect(x: 205, y: 500, width: 4, height: 4))
+    let point3 = UIView(frame: CGRect(x: 210, y: 500, width: 4, height: 4))
     
     private func dowloadIndicatorAnimate() {
         pointPrepare(cView: point1, delay: 0)
