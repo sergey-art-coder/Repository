@@ -33,7 +33,7 @@ class CustomNavigationControllerFriends: UINavigationController, UINavigationCon
             }
             return animatorTwist90Pop()
         }
-        return nil // если ни тот вариант и ни другой (как такое может быть не понятно)
+        return nil // если ни тот вариант и ни другой
     }
     
     // использование обработчика свайпов переход по свайпу (назад)
@@ -55,11 +55,15 @@ class animatorTwist90Push: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        // надо бы проверять гуардами, так как может не быть этих контроллеров
-        let source = transitionContext.viewController(forKey: .from)! //откуда переход (источник)
-        let destination = transitionContext.viewController(forKey: .to)! //куда переход (цель)
         
-        let containerViewFrame = transitionContext.containerView.frame //контейнер (экран)
+        // откуда переход (источник)
+        guard let source = transitionContext.viewController(forKey: .from) else { return }
+        
+        //куда переход (цель)
+        guard let destination = transitionContext.viewController(forKey: .to) else { return }
+        
+        //контейнер (экран)
+        let containerViewFrame = transitionContext.containerView.frame
         
         let sourceViewFrame = CGRect( //это размеры и положение фрейма где окажется источник после анимации (слева)
             x: -containerViewFrame.height,
@@ -90,7 +94,7 @@ class animatorTwist90Push: NSObject, UIViewControllerAnimatedTransitioning {
                 destination.view.transform = .identity // обратный поворот цели
                 destination.view.frame = destinationViewFrame // ввод в окно цели
             }) { finished in
-                //source.removeFromParent() // не нужно, так как некуда будет вернуться
+                
                 transitionContext.completeTransition(finished)
             }
     }
@@ -105,11 +109,14 @@ class animatorTwist90Pop: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        // надо бы проверять гуардами, так как может не быть этих контроллеров
-        let source = transitionContext.viewController(forKey: .from)! //откуда переход (источник)
-        let destination = transitionContext.viewController(forKey: .to)! //куда переход (цель)
+        // откуда переход (источник)
+        guard let source = transitionContext.viewController(forKey: .from) else { return }
         
-        let containerViewFrame = transitionContext.containerView.frame //контейнер (экран)
+        //куда переход (цель)
+        guard let destination = transitionContext.viewController(forKey: .to) else { return }
+        
+        //контейнер (экран)
+        let containerViewFrame = transitionContext.containerView.frame
         
         let sourceViewFrame = CGRect( //это размеры и положение фрейма где окажется источник после анимации (справа)
             x: containerViewFrame.width,
@@ -140,7 +147,7 @@ class animatorTwist90Pop: NSObject, UIViewControllerAnimatedTransitioning {
                 destination.view.frame = destinationViewFrame // ввод в окно цели
                 
             }) { finished in
-                //source.removeFromParent()
+                
                 transitionContext.completeTransition(finished)
             }
     }
