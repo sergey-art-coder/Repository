@@ -9,8 +9,7 @@ import UIKit
 
 class FriendPhotoViewController: UIViewController {
     
-   // var photos: [UIImage] = []
-    var photos: Friend!
+    var photos: Friend?
     // передаем индекс выбраной фотографии (храним в свойстве selectedIndex индекс выбраного слайда)
     var selectedIndex: Int = 0
     
@@ -19,8 +18,8 @@ class FriendPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //photoImageView.image = photos.first
-        photoImageView.image = photos.userAvatar
+        photoImageView.image = photos?.userPhotos[selectedIndex]
+        
         // фон экрана будет как фон картинки
         photoImageView.backgroundColor = view.backgroundColor
         // добавим жест в лево
@@ -33,13 +32,15 @@ class FriendPhotoViewController: UIViewController {
         swipeRight.direction = .right
         view.addGestureRecognizer(swipeRight)
     }
+}
+extension FriendPhotoViewController {
     @objc
     func swipeLeftAction() {
         
         // убедимся что мы не на последней картинке
-        guard photos.userPhotos.count > selectedIndex + 1 else { return }
+        guard photos?.userPhotos.count ?? 0 > selectedIndex + 1 else { return }
         // если есть куда свайпать то мы получаем картинку
-        let nextImage = photos.userPhotos[selectedIndex + 1]
+        let nextImage = photos?.userPhotos[selectedIndex + 1]
         // создали UIImageView
         let newTemporaryImageView = UIImageView()
         newTemporaryImageView.backgroundColor = view.backgroundColor
@@ -78,7 +79,7 @@ class FriendPhotoViewController: UIViewController {
         // если selectedIndex > 0 то можем свайпать назад
         guard selectedIndex > 0 else { return }
         // если есть куда свайпать то мы получаем картинку
-        let nextImage = photos.userPhotos[selectedIndex - 1]
+        let nextImage = photos?.userPhotos[selectedIndex - 1]
         // создали UIImageView
         let newTemporaryImageView = UIImageView()
         newTemporaryImageView.backgroundColor = view.backgroundColor
@@ -110,6 +111,5 @@ class FriendPhotoViewController: UIViewController {
             // удаляем временную картинку
             newTemporaryImageView.removeFromSuperview()
         }
-       // print("test")
     }
 }

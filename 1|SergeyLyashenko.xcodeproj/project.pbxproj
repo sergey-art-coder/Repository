@@ -12,6 +12,11 @@
 		EC1290AF25EA477400661904 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1290AD25EA477400661904 /* LaunchScreen.storyboard */; };
 		EC195FBB261A21CC00D9673C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC195FBA261A21CC00D9673C /* ProfileTableViewController.swift */; };
 		EC238B2126556D5400C1144D /* FriendPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC238B2026556D5400C1144D /* FriendPhotoViewController.swift */; };
+		EC3F800C2708C3A000234529 /* CustomNavigationControllerFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3F800B2708C3A000234529 /* CustomNavigationControllerFriends.swift */; };
+		EC3F800E2708C46700234529 /* CustomPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3F800D2708C46700234529 /* CustomPushAnimator.swift */; };
+		EC3F80102708C57300234529 /* CustomPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3F800F2708C57300234529 /* CustomPopAnimator.swift */; };
+		EC3F80122708C6AE00234529 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3F80112708C6AE00234529 /* CustomNavigationController.swift */; };
+		EC3F80142708C6DB00234529 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3F80132708C6DB00234529 /* CustomInteractiveTransition.swift */; };
 		EC4A96CA2659577100AF372A /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4A96C92659577100AF372A /* LikeButton.swift */; };
 		EC61E27B26626E0300CED8A5 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC61E27A26626E0300CED8A5 /* AvatarImageView.swift */; };
 		EC6A552A2658E9E800962327 /* ImageWithShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6A55292658E9E800962327 /* ImageWithShadow.swift */; };
@@ -41,6 +46,11 @@
 		EC1290B025EA477400661904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC195FBA261A21CC00D9673C /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		EC238B2026556D5400C1144D /* FriendPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoViewController.swift; sourceTree = "<group>"; };
+		EC3F800B2708C3A000234529 /* CustomNavigationControllerFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationControllerFriends.swift; sourceTree = "<group>"; };
+		EC3F800D2708C46700234529 /* CustomPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPushAnimator.swift; sourceTree = "<group>"; };
+		EC3F800F2708C57300234529 /* CustomPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopAnimator.swift; sourceTree = "<group>"; };
+		EC3F80112708C6AE00234529 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		EC3F80132708C6DB00234529 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		EC4A96C92659577100AF372A /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		EC61E27A26626E0300CED8A5 /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 		EC6A55292658E9E800962327 /* ImageWithShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithShadow.swift; sourceTree = "<group>"; };
@@ -105,8 +115,21 @@
 				EC9F2981262C4FB8006BF21F /* Group */,
 				EC6F83DC2661112C00A18E2F /* News */,
 				EC8311E12664E98100C0AF15 /* ImageView */,
+				EC3F800A2708C34700234529 /* Transitions */,
 			);
 			path = "1|SergeyLyashenko";
+			sourceTree = "<group>";
+		};
+		EC3F800A2708C34700234529 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				EC3F800B2708C3A000234529 /* CustomNavigationControllerFriends.swift */,
+				EC3F80112708C6AE00234529 /* CustomNavigationController.swift */,
+				EC3F800D2708C46700234529 /* CustomPushAnimator.swift */,
+				EC3F800F2708C57300234529 /* CustomPopAnimator.swift */,
+				EC3F80132708C6DB00234529 /* CustomInteractiveTransition.swift */,
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		EC6F83DC2661112C00A18E2F /* News */ = {
@@ -232,16 +255,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3F80102708C57300234529 /* CustomPopAnimator.swift in Sources */,
 				EC9F2989262C5F07006BF21F /* GroupTableViewController.swift in Sources */,
 				ECC5037B265582FA0021BBC4 /* Friends.swift in Sources */,
 				EC98F6CF262D8C0400E9126E /* SceneDelegate.swift in Sources */,
 				EC1290A725EA477300661904 /* LoginViewController.swift in Sources */,
 				ECB12D58262CD8AD004406CE /* PhotosFriendCollectionViewCell.swift in Sources */,
 				ECC3F4A7265BE0E00021C9F4 /* GradientView.swift in Sources */,
+				EC3F800C2708C3A000234529 /* CustomNavigationControllerFriends.swift in Sources */,
 				ECB12D4B262CA123004406CE /* GroupTableViewCell.swift in Sources */,
 				EC98F6CB262D8B8F00E9126E /* AppDelegate.swift in Sources */,
 				EC61E27B26626E0300CED8A5 /* AvatarImageView.swift in Sources */,
 				EC6A552A2658E9E800962327 /* ImageWithShadow.swift in Sources */,
+				EC3F80122708C6AE00234529 /* CustomNavigationController.swift in Sources */,
+				EC3F80142708C6DB00234529 /* CustomInteractiveTransition.swift in Sources */,
+				EC3F800E2708C46700234529 /* CustomPushAnimator.swift in Sources */,
 				ECC5037E265583490021BBC4 /* Groups.swift in Sources */,
 				ECA123FA266127F200DF2A59 /* NewsCustomTableViewCell.swift in Sources */,
 				ECB12D4E262CA489004406CE /* AllGroupTableViewController.swift in Sources */,
