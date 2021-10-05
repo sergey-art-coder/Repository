@@ -38,6 +38,10 @@ class PhotosFriendCollectionViewController: UICollectionViewController, UICollec
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photosFriendsCell, for: indexPath) as? PhotosFriendCollectionViewCell else { return UICollectionViewCell() }
         
         let photo = photos?.userPhotos[indexPath.item]
+        
+        cell.photosFriendImage.layer.borderWidth = 3
+        cell.photosFriendImage.layer.borderColor = UIColor.lightGray.cgColor
+        
         cell.photosFriendImage.image = photo
         
         return cell

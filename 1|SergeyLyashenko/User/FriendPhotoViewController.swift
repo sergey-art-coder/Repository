@@ -12,6 +12,7 @@ class FriendPhotoViewController: UIViewController {
     var photos: Friend?
     // передаем индекс выбраной фотографии (храним в свойстве selectedIndex индекс выбраного слайда)
     var selectedIndex: Int = 0
+    var imageScrollView: ImageScrollView!
     
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -19,9 +20,10 @@ class FriendPhotoViewController: UIViewController {
         super.viewDidLoad()
         
         photoImageView.image = photos?.userPhotos[selectedIndex]
-        
-        // фон экрана будет как фон картинки
+
+//         фон экрана будет как фон картинки
         photoImageView.backgroundColor = view.backgroundColor
+        
         // добавим жест в лево
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeftAction))
         swipeLeft.direction = .left
