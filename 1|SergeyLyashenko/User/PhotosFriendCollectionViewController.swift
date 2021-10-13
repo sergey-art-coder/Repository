@@ -12,8 +12,8 @@ class PhotosFriendCollectionViewController: UICollectionViewController, UICollec
     let photosFriendsCell = "PhotosFriendsCell"
     let toFriendPhoto = "toFriendPhoto"
     
-    var photos: Friend!
-    var selectedPhotos = [UIImage]()
+    var photos: Friend?
+    var selectedIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,32 +31,36 @@ class PhotosFriendCollectionViewController: UICollectionViewController, UICollec
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.userPhotos.count
+        return photos?.userPhotos.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photosFriendsCell, for: indexPath) as? PhotosFriendCollectionViewCell else { return UICollectionViewCell() }
         
+        let photo = photos?.userPhotos[indexPath.item]
         
-        let photo = photos.userPhotos[indexPath.item]
+        cell.photosFriendImage.layer.borderWidth = 3
+        cell.photosFriendImage.layer.borderColor = UIColor.lightGray.cgColor
+        
         cell.photosFriendImage.image = photo
         
         return cell
     }
-    // прописывам нужный размер ячейки
+    
+    // MARK: - прописывам нужный размер ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var width = collectionView.bounds.width
         let insets = collectionView.contentInset.left + collectionView.contentInset.right
         width -= insets
-        width -= 10
-        width /= 4
+        width -= 40
+        width /= 3
         return CGSize(width: width, height: width)
     }
     
-    // сохраняем выбранный индекс в переменной selectedPhotos и убираем выделения
+    // сохраняем выбранный индекс в переменной selectedIndex и убираем выделения
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedPhotos = [photos.userPhotos[indexPath.item]]
-        performSegue(withIdentifier: toFriendPhoto, sender: self)
+        selectedIndex = indexPath.item
+        performSegue(withIdentifier: toFriendPhoto, sender: selectedIndex)
     }
     
     // метод через который мы переходим на FriendsPhotosViewController
@@ -69,9 +73,10 @@ class PhotosFriendCollectionViewController: UICollectionViewController, UICollec
             
             guard let detailVC = segue.destination as? FriendPhotoViewController,
                   let indexPath = self.collectionView.indexPathsForSelectedItems?.first else { return }
-            selectedPhotos = [photos.userPhotos[indexPath.item]]
-            detailVC.photos = selectedPhotos
-            
+
+            detailVC.selectedIndex = indexPath.item
+            detailVC.photos = photos
         }
     }
 }
+

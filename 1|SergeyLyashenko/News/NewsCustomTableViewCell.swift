@@ -25,28 +25,26 @@ class NewsCustomTableViewCell: UITableViewCell {
     
     // очищаем
     func clearCell() {
-//        avatarImageView.image = nil
-//        authorLabel.text = nil
-//        timeLabel.text = nil
-//        postLabel.text = nil
-//        postImageView.image = nil
-//        likeButton.likeImage = nil
-//        commentButton.likeImage = nil
-//        repostButton.likeImage = nil
+        avatarImageView.image = nil
+        authorLabel.text = nil
+        timeLabel.text = nil
+        postLabel.text = nil
+        postImageView.image = nil
+        //        likeButton.likeImage = nil
+        //        commentButton.likeImage = nil
+        //        repostButton.likeImage = nil
         
-
-
+        likeButton.isSelected = false
+        commentButton.isSelected = false
+        repostButton.isSelected = false
+        
     }
     
     // функция prepareForReuse вызывается автоматически при переиспользовании ячейки
     override func prepareForReuse() {
         
         super.prepareForReuse()
-                clearCell()
-        likeButton.isSelected = false
-        commentButton.isSelected = false
-        repostButton.isSelected = false
-        
+        clearCell()
         
     }
     
@@ -89,7 +87,7 @@ class NewsCustomTableViewCell: UITableViewCell {
     // вызывается один раз, это инициализация ячейки
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-        clearCell()
+                setup()
+                clearCell()
     }
 }
